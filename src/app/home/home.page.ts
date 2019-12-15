@@ -9,4 +9,9 @@ export class HomePage {
 
   constructor() {}
 
+  stateWizard(e) {
+    console.log('statettt');
+    console.log(e);
+  }
+
 }
