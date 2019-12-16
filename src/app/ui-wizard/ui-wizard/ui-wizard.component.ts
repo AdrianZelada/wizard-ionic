@@ -19,7 +19,8 @@ export class UiWizardComponent implements OnInit, AfterContentInit {
   private index = 0;
   private components: Array<UiWizardStepInterface> = [];
   @Output() stateWizard: EventEmitter<any> = new EventEmitter<any>();
-  @ContentChildren(UiWizardStepDirective) uiSteps: QueryList<UiWizardStepAbstract>;
+  @ContentChildren(UiWizardStepDirective) uiSteps: QueryList<UiWizardStepDirective>;
+  public steps: Array<any> = [];
   constructor() { }
 
   ngOnInit() {}
@@ -27,6 +28,9 @@ export class UiWizardComponent implements OnInit, AfterContentInit {
   ngAfterContentInit(): void {
     this.uiSteps.toArray().forEach((data) => {
       this.components.push(data);
+      this.steps.push({
+        title: data.titleStep
+      });
     });
     this.moveStep({});
   }

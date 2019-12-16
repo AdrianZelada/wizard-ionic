@@ -1,4 +1,4 @@
-import {AfterContentInit, ComponentRef, Directive, ElementRef, Host, Optional, Self, ViewContainerRef} from '@angular/core';
+import {AfterContentInit, ComponentRef, Directive, ElementRef, Host, Input, Optional, Self, ViewContainerRef} from '@angular/core';
 import {UiWizardStepAbstract, UiWizardStepInterface} from '../interfaces';
 
 @Directive({
@@ -8,6 +8,8 @@ export class UiWizardStepDirective implements UiWizardStepInterface, AfterConten
 
   component: UiWizardStepInterface;
   element: HTMLElement;
+  @Input() titleStep: string = '';
+
   constructor(private el: ElementRef, private _viewContainerRef: ViewContainerRef) {
     this.element = this.el.nativeElement;
     this.element.style.display = 'none';

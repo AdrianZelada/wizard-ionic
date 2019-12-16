@@ -1,6 +1,18 @@
 <ion-content>
-<br><br><br>
-    <ng-content></ng-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ui-wizard-header [steps]="steps" [currentStep]="index"></ui-wizard-header>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ng-content></ng-content>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
 </ion-content>
 <ion-footer>
     <ion-button (click)="previus()">previus</ion-button>

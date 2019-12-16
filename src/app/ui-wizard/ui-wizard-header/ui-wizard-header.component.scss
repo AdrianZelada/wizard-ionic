@@ -1,0 +1,147 @@
+#wizard-header {
+  position: relative;
+  text-align: center;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  height: 100px;
+}
+.step-wizard {
+  display: inline-block;
+  position: relative;
+  width: 85%;
+}
+.progress-content {
+  width: 100%;
+  position: absolute;
+  top: 25%;
+}
+.step-wizard .progress {
+  position: relative;
+  //top: 35px;
+  left: 0%;
+  width: 50%;
+  float: left;
+}
+.step-wizard .progressbar {
+  position: absolute;
+  background-color: #3B5343;
+  opacity: 1;
+  height: 3px;
+  width: 0%;
+  -webkit-transition: width 0.6s ease;
+  -o-transition: width 0.6s ease;
+  transition: width 0.6s ease;
+}
+.step-wizard .progressbar.empty {
+  opacity: 1;
+  width: 100%;
+  float: left;
+  background-color: #d0d0d0;
+  position: relative;
+}
+
+.step-wizard .progressbar.fill-step {
+  opacity: 1;
+  //width: 50%;
+  float: left;
+  //position: absolute;
+}
+
+
+.hide-line{
+  opacity: 0 !important;
+}
+.step-wizard ul {
+  position: absolute;
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  left: -2%;
+}
+.step-wizard li {
+  display: inline-block;
+  text-align: center;
+  width: 24%;
+}
+.step-wizard li .step {
+  text-align: center;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: #d0d0d0;
+  background: #ffffff;
+  position: inherit;
+  -webkit-transition: background-color 0.6s ease, border-color 0.6s ease;
+  -o-transition: background-color 0.6s ease, border-color 0.6s ease;
+  transition: background-color 0.6s ease, border-color 0.6s ease;
+}
+.step-wizard li .title {
+  text-decoration: underline;
+  width: 100%;
+  padding-top: 10px;
+  color: #767676;
+  -webkit-transition: color 0.6s ease;
+  -o-transition: color 0.6s ease;
+  transition: color 0.6s ease;
+}
+.step-wizard li.active .step {
+  border-color: #3B5343;
+  color: #3b5343;
+}
+.step-wizard li.active .title {
+  text-decoration: none;
+  color: #3b5343;
+  font-weight: bold;
+}
+.step-wizard li.done .title {
+  color: #3b5343;
+}
+.step-wizard li.done .title:hover {
+  color: #3B5343;
+}
+.step-wizard li.done .step {
+  color: white;
+  background-color: #3B5343;
+  border-color: #3B5343;
+}
+.step-wizard li > button {
+  background: none;
+  border: none;
+  display: block;
+  width: 100%;
+  color: #777;
+  position: relative;
+  text-align: center;
+  padding: 0px !important;
+}
+.step-wizard li > button:hover .step {
+  border-color: #3b5343;
+  background: #eee;
+  color: #3b5343;
+}
+.step-wizard li > button:hover .title {
+  color: #3b5343;
+}
+@media only screen and (max-width: 1200px) {
+  .step-wizard li {
+    width: 33%;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .step-wizard li {
+    width: 22%;
+  }
+}
+li.done button div.step {
+  font-size: 0;
+}
+li.done button div.step::before {
+  content: "\2713 ";
+  font-size: 18px;
+}

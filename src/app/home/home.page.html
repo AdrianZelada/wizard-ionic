@@ -8,8 +8,9 @@
 
 <ion-content>
     <ui-wizard (stateWizard)="stateWizard($event)">
-      <app-cp1 uiWizardStep></app-cp1>
-      <app-cp2 uiWizardStep></app-cp2>
+      <app-cp1 uiWizardStep [titleStep]="'Step One'"></app-cp1>
+      <app-cp2 uiWizardStep [titleStep]="'Step Two'"></app-cp2>
+      <app-cp2 uiWizardStep [titleStep]="'Step Tree'"></app-cp2>
     </ui-wizard>
 
 </ion-content>
