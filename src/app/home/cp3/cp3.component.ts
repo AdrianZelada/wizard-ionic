@@ -3,13 +3,13 @@ import {UiWizardStepInterface} from '../../ui-wizard/interfaces';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
 @Component({
-  selector: 'app-cp2',
-  templateUrl: './cp2.component.html',
-  styleUrls: ['./cp2.component.scss'],
+  selector: 'app-cp3',
+  templateUrl: './cp3.component.html',
+  styleUrls: ['./cp3.component.scss'],
 })
-export class Cp2Component implements OnInit, UiWizardStepInterface {
-
+export class Cp3Component implements OnInit, UiWizardStepInterface {
   private $isValid: BehaviorSubject<any> = new BehaviorSubject<any>(false);
+
   // private $isValid: Subject<any> = new Subject<any>();
   isValid: Observable<any> = this.$isValid.asObservable();
   constructor() { }
@@ -17,18 +17,18 @@ export class Cp2Component implements OnInit, UiWizardStepInterface {
   ngOnInit() {}
 
   getData(): any {
-    console.log('cp222222 getData');
-
+    console.log('cp 33333  getData');
   }
 
   init(data?: any): void {
-    console.log('cp2 init');
-  }
+    console.log('cp 33333 init');
+}
 
   rollback(): void {
   }
 
   valid(): Observable<any> {
+    console.log("cpppppp 333 vaid")
     return this.isValid;
   }
 

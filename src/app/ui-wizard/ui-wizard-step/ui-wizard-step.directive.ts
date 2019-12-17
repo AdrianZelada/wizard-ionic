@@ -1,5 +1,6 @@
 import {AfterContentInit, ComponentRef, Directive, ElementRef, Host, Input, Optional, Self, ViewContainerRef} from '@angular/core';
 import {UiWizardStepAbstract, UiWizardStepInterface} from '../interfaces';
+import {Observable} from 'rxjs';
 
 @Directive({
   selector: '[uiWizardStep]'
@@ -31,7 +32,10 @@ export class UiWizardStepDirective implements UiWizardStepInterface, AfterConten
     this.element.style.display = 'none';
   }
 
-  valid(): void {
+  valid(): Observable<any> | void {
+
+    console.log("directive")
+    return this.component.valid();
   }
 
   ngAfterContentInit(): void {

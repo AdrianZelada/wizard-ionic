@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UiWizardStepInterface} from '../../ui-wizard/interfaces';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
 @Component({
   selector: 'app-cp1',
@@ -8,12 +9,12 @@ import {UiWizardStepInterface} from '../../ui-wizard/interfaces';
 })
 export class Cp1Component implements OnInit, UiWizardStepInterface {
 
+  private $isValid: BehaviorSubject<any> = new BehaviorSubject<any>(false);
+  // private $isValid: Subject<any> = new Subject<any>();
+  isValid: Observable<any> = this.$isValid.asObservable();
   constructor() { }
 
   ngOnInit() {}
-
-
-  isValid: boolean;
 
   getData(): any {
     console.log('cp11111 getData');
@@ -22,13 +23,17 @@ export class Cp1Component implements OnInit, UiWizardStepInterface {
 
   init(data?: any): void {
     console.log('cp11111 init');
-
+    setTimeout(() => {
+      console.log('run obs');
+      this.$isValid.next(true)
+    }, 3000)
   }
 
   rollback(): void {
   }
 
-  valid(): void {
+  valid(): Observable<any> {
+    return this.isValid;
   }
 
 }

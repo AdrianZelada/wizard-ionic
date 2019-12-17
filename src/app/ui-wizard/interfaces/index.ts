@@ -1,3 +1,5 @@
+import {Observable, of} from 'rxjs';
+
 export interface UiWizardInterface {
   next(): void;
   previus(): void;
@@ -7,16 +9,15 @@ export interface UiWizardInterface {
 
 export interface UiWizardStepInterface {
   // titleStep: string;
-  isValid: boolean;
+  isValid: boolean | Observable<any> ;
   init(data?: any): void;
-  valid(): void;
+  valid(): Observable<any> | void;
   getData(): any;
   rollback(): void;
 }
 
 export abstract class UiWizardStepAbstract implements UiWizardStepInterface{
-  isValid: boolean;
-
+  isValid: boolean | Observable<any>;
 
   getData(): any {
     return {};
@@ -28,7 +29,8 @@ export abstract class UiWizardStepAbstract implements UiWizardStepInterface{
   rollback(): void {
   }
 
-  valid(): void {
+  valid(): Observable<any> {
+    return of([]);
   }
 
 }

@@ -9,6 +9,8 @@ import {
 } from '@angular/core';
 import {UiWizardStepDirective} from '../ui-wizard-step/ui-wizard-step.directive';
 import {UiWizardStepAbstract, UiWizardStepInterface} from '../interfaces';
+import {Observable, merge, combineLatest} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'ui-wizard',
@@ -21,16 +23,36 @@ export class UiWizardComponent implements OnInit, AfterContentInit {
   @Output() stateWizard: EventEmitter<any> = new EventEmitter<any>();
   @ContentChildren(UiWizardStepDirective) uiSteps: QueryList<UiWizardStepDirective>;
   public steps: Array<any> = [];
+  validSteps: Array<any> = [];
+
+  // validationSteps:
   constructor() { }
 
   ngOnInit() {}
 
   ngAfterContentInit(): void {
-    this.uiSteps.toArray().forEach((data) => {
+    const mergeValid: Array<Observable<any>> = [];
+    this.uiSteps.toArray().forEach((data: any, ind: number) => {
       this.components.push(data);
+      mergeValid.push(data.valid().pipe(
+        map((status) => {
+          console.log("status");
+          console.log(status);
+          return {
+            valid: status,
+            index: ind
+          };
+        })
+      ))
       this.steps.push({
         title: data.titleStep
       });
+    });
+
+    combineLatest(mergeValid).subscribe((data: any) => {
+      console.log('combineLatest');
+      console.log(data);
+      this.validSteps = data;
     });
     this.moveStep({});
   }

@@ -11,10 +11,8 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-
-
 </ion-content>
 <ion-footer>
     <ion-button (click)="previus()">previus</ion-button>
-    <ion-button (click)="next()"> next</ion-button>
+    <ion-button (click)="next()" [disabled]="!validSteps[index]?.valid"> next</ion-button>
 </ion-footer>

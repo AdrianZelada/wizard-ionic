@@ -1,9 +1,5 @@
 <div id="wizard-header">
   <div class="step-wizard" role="navigation">
-    <!--<div class="progress">-->
-      <!--<div class="progressbar empty"></div>-->
-      <!--<div id="prog" class="progressbar" [style.width]="size"></div>-->
-    <!--</div>-->
     <ul>
       <li *ngFor="let step of steps; let i = index" [ngClass]="{'active':i == indexStep, 'done': i < indexStep }">
 
@@ -12,14 +8,10 @@
             <div class="progress" [ngClass]="{'hide-line': i == 0}">
               <div class="progressbar empty" ></div>
               <div class="progressbar fill-step" [style.width]="indexStep >= i ? '100%' : '0%' "></div>
-              <!--<div class="progressbar fill-step" [ngClass]="{'hide-line': i == 0}" [style.width]="indexStep == i ? '50%' : '0%' "></div>-->
             </div>
             <div class="progress" [ngClass]="{'hide-line': i == steps.length - 1}">
               <div class="progressbar empty"></div>
               <div class="progressbar fill-step" [style.width]="indexStep > i ? '100%' : '0%' "></div>
-              <!--<div class="progressbar empty" [ngClass]="{'hide-line': i == steps.length-1}"></div>-->
-
-              <!--<div id="prog" class="progressbar" [style.width]="size"></div>-->
             </div>
           </div>
           <div class="step">1</div>
