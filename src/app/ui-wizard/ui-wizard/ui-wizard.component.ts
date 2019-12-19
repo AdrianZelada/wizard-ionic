@@ -2,22 +2,29 @@ import {
   AfterContentInit,
   Component,
   ContentChildren,
-  EventEmitter,
+  EventEmitter, forwardRef,
   OnInit,
   Output,
   QueryList
 } from '@angular/core';
 import {UiWizardStepDirective} from '../ui-wizard-step/ui-wizard-step.directive';
-import {UiWizardStepAbstract, UiWizardStepInterface} from '../interfaces';
+import {UiWizardInterface, UiWizardStepAbstract, UiWizardStepInterface} from '../interfaces';
 import {Observable, merge, combineLatest} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {WizardService} from "../wizard.service";
 
 @Component({
   selector: 'ui-wizard',
   templateUrl: './ui-wizard.component.html',
   styleUrls: ['./ui-wizard.component.scss'],
+  viewProviders: [
+    {
+      provide: WizardService,
+      useExisting: forwardRef(() => UiWizardComponent)
+    }
+  ]
 })
-export class UiWizardComponent implements OnInit, AfterContentInit {
+export class UiWizardComponent implements OnInit, AfterContentInit, UiWizardInterface {
   private index = 0;
   private components: Array<UiWizardStepInterface> = [];
   @Output() stateWizard: EventEmitter<any> = new EventEmitter<any>();
@@ -58,6 +65,7 @@ export class UiWizardComponent implements OnInit, AfterContentInit {
   }
 
   next() {
+    console.log('asdata')
     if (this.index < this.components.length - 1) {
       const data = this.components[this.index].getData();
       this.index++;
@@ -79,6 +87,13 @@ export class UiWizardComponent implements OnInit, AfterContentInit {
       index: this.index,
       data
     });
+  }
+
+  finish(): void {
+  }
+
+  toStep(step: any): boolean {
+    return false;
   }
 
 }
